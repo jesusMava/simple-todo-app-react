@@ -4,10 +4,12 @@ import './index.css'
 import { configureStore } from '@reduxjs/toolkit'
 import { Provider } from 'react-redux'
 import App from './App.jsx'
-
+import { todosSlice } from './todoSlice.js'
 
 const store = configureStore({
-  reducer: {},
+  reducer: {
+    todos: todosSlice.reducer
+  },
 })
 
 createRoot(document.getElementById('root')).render(
