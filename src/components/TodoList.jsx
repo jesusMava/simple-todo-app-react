@@ -1,25 +1,27 @@
 import React from 'react'
 import TodoListItem from './TodoListItem'
 import NewTodoForm from './NewTodoForm'
+import { useSelector } from 'react-redux'
 
-const TodoList = ({completedTodos, incompleteTodos, onDeleteClicked, onCompletedClicked, onCreateClicked}) => {
+const TodoList = ({onCreateClicked}) => {
+  const todos = useSelector(state => state.todos.value)
+
   return (
     <div>
         <h1>My Todos</h1>
-        <NewTodoForm onCreateClicked={onCreateClicked}/>
+        <NewTodoForm />
         <p>New todo form will go here....</p>
         <h3>Completed:</h3>
-        {completedTodos.map((todo, idx) => (
+        {todos.map((todo, idx) => (
             <TodoListItem 
               todo={todo}
               key={idx}
-              onDeleteClicked={onDeleteClicked}
             />
         ))}
       <hr/>
         <h3>Incomplete:</h3>
-        {incompleteTodos.map((todo, idx) => (
-            <TodoListItem todo={todo} key={idx} onCompletedClicked={onCompletedClicked}/>
+        {todos.map((todo, idx) => (
+            <TodoListItem todo={todo} key={idx}/>
         ))}
 
 

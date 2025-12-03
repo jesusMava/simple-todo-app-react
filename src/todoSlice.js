@@ -5,24 +5,37 @@ import { createSlice } from "@reduxjs/toolkit";
 export const todosSlice = createSlice({
     name: 'todos',
     initialState: {
-        value: []
+      value: [{
+        text: 'Go to the Store',
+        isCompleted: true
+      },
+        {
+          text: 'new todo',
+          isCompleted: false
+        }
+      ]
     },
 //how these reduces will modify the state
     reducers: {
-        createTodo: state => {
+        createTodo: (state, action) => {
             state.value = [...state.value, {
-                text: 'new todo',
+                text: action.payload,
                 isCompleted: false,
             }]
         },
-        markAsCompleted: state => {
-            const text = 'new todo'
+        markAsCompleted: (state, action) => {
+          console.log(action)
+            const text = action.payload
             const todo = state.value.find( t => t.text === text)
             todo.isCompleted = true
         },
-        deleteTodo: state => {
-            const text = 'new todo'
+        deleteTodo: (state, action) => {
+          console.log("delete", action)
+            const text = action.payload
             state.value = state.value.filter( t => t.text !== text)
         },
     }
 })
+
+
+export const {createTodo, markAsCompleted, deleteTodo } = todosSlice.actions;
