@@ -9,17 +9,15 @@ export const todosSlice = createSlice({
     },
 //how these reduces will modify the state
     reducers: {
-        createTodo: (state, action) => {
-            state.value = [...state.value, {
-                text: action.payload,
-                isCompleted: false,
-            }]
-        },
         markAsCompleted: (state, action) => {
           console.log(action)
             const text = action.payload
             const todo = state.value.find( t => t.text === text)
             todo.isCompleted = true
+        },
+        todosUpdated: (state, action) => {
+          const updatedTodos = action.payload;
+          state.value = updatedTodos;
         },
         deleteTodo: (state, action) => {
           console.log("delete", action)
@@ -35,4 +33,4 @@ export const todosSlice = createSlice({
 })
 
 
-export const {createTodo, markAsCompleted, deleteTodo } = todosSlice.actions;
+export const { markAsCompleted, deleteTodo, todosUpdated } = todosSlice.actions;

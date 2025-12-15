@@ -24,4 +24,4 @@ export const loadingSlice = createSlice({
 })
 
 
-export const {loadingStarted, loadingCompleted, loadingFailed } = todosSlice.actions;
+export const {loadingStarted, loadingCompleted, loadingFailed } = loadingSlice.actions;
