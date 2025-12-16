@@ -26,7 +26,7 @@ app.post('/api/todos', (req, res) => {
 });
 
 app.delete('/api/todos/:id', (req, res) => {
-  const todoId = parseInt(req.params.id);
+  const todoId = req.params.id
   todos = todos.filter(todo => todo.id !== todoId);
   res.send();
 });
@@ -40,7 +40,7 @@ app.put('/api/todos/:id', (req, res) => {
   if (todoIndex === -1) {
     return res.status(404).json({ message: 'Todo not found' });
   }
-
+  console.log(updatedTodo)
   todos[todoIndex] = { ...todos[todoIndex], ...updatedTodo };
   res.json(todos[todoIndex]);
 });

@@ -10,7 +10,6 @@ export const todosSlice = createSlice({
 //how these reduces will modify the state
     reducers: {
         markAsCompleted: (state, action) => {
-          console.log(action)
             const text = action.payload
             const todo = state.value.find( t => t.text === text)
             todo.isCompleted = true
@@ -20,7 +19,6 @@ export const todosSlice = createSlice({
           state.value = updatedTodos;
         },
         deleteTodo: (state, action) => {
-          console.log("delete", action)
             const text = action.payload
             state.value = state.value.filter( t => t.text !== text)
         },
